@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrightWave HC | Professional Web Development Agency</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #4361ee;
+    --primary-dark: #3a56d4;
+    --secondary: #7209b7;
+    --accent: #4cc9f0;
+    --light: #ffffff;
+    --dark: #0a0a0a;
+    --gray: #6c757d;
+    --light-gray: #f8f9fa;
+    --dark-gray: #343a40;
+    --success: #06d6a0;
+    --warning: #ffd166;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+    --gradient-light: linear-gradient(135deg, var(--primary), var(--accent));
+    --gradient-dark: linear-gradient(135deg, var(--secondary), var(--primary-dark));
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark);
+    background-color: var(--light);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Header / Navigation - FIXED WORKING NAVIGATION */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    padding: 15px 0;
+    transition: all 0.3s ease;
+  }
+
+  header.scrolled {
+    padding: 10px 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+    overflow: hidden;
+  }
+
+  .logo-img-placeholder {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+  }
+
+  .logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+  }
+
+  .logo-subtext {
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-weight: 500;
+    margin-top: -5px;
+  }
+
+  /* FIXED NAVIGATION - PROPER STRUCTURE */
+  .nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--dark-gray);
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+  }
+
+  .nav-links a:hover {
+    color: var(--primary);
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  /* IMPROVED EMAIL DISPLAY */
+  .nav-email {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gradient);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: emailPulse 2s infinite;
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+    white-space: nowrap;
+  }
+
+  @keyframes emailPulse {
+    0% { box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3); }
+    50% { box-shadow: 0 4px 20px rgba(67, 97, 238, 0.5); }
+    100% { box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3); }
+  }
+
+  .nav-email:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+    background: var(--gradient-dark);
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary);
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 180px 0 120px;
+    background: linear-gradient(135deg, #f5f7ff 0%, #eef1ff 100%);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-bg-shape {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(67, 97, 238, 0.08) 0%, transparent 70%);
+    top: -400px;
+    right: -200px;
+    animation: float 25s infinite linear;
+  }
+
+  .hero-bg-shape-2 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(114, 9, 183, 0.08) 0%, transparent 70%);
+    bottom: -300px;
+    left: -150px;
+    animation: float 30s infinite linear reverse;
+  }
+
+  @keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(40px, 40px) rotate(120deg); }
+    66% { transform: translate(-20px, 60px) rotate(240deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+  }
+
+  .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    line-height: 1.1;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-subtitle {
+    font-size: 1.8rem;
+    color: var(--gray);
+    margin-bottom: 40px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .hero-description {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-bottom: 60px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    gap: 10px;
+  }
+
+  .btn-primary {
+    background: var(--gradient);
+    color: white;
+    box-shadow: 0 10px 20px rgba(67, 97, 238, 0.2);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(67, 97, 238, 0.3);
+    background: var(--gradient-dark);
+  }
+
+  .btn-secondary {
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .btn-secondary:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(67, 97, 238, 0.2);
+  }
+
+  /* IMPROVED EMAIL DISPLAY SECTION */
+  .hero-email-section {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 50px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-email-title {
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+
+  .hero-email-subtitle {
+    color: var(--gray);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+  }
+
+  .email-display-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 20px 30px;
+    border-radius: 15px;
+    border: 2px solid #e9ecef;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+  }
+
+  .email-display-main:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .email-icon {
+    font-size: 1.8rem;
+    color: var(--primary);
+  }
+
+  .email-address {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  .email-copy-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .email-copy-btn:hover {
+    background: var(--primary-dark);
+  }
+
+  .email-response-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--success);
+    font-weight: 500;
+  }
+
+  /* Services Section */
+  #services {
+    padding: 100px 0;
+    background: white;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .section-title h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient);
+    border-radius: 2px;
+  }
+
+  .section-title p {
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+  }
+
+  .service-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .service-card:hover .service-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .service-header {
+    padding: 35px 30px 25px;
+    position: relative;
+  }
+
+  .service-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+    color: white;
+    transition: all 0.4s ease;
+  }
+
+  .service-card:nth-child(1) .service-icon {
+    background: linear-gradient(135deg, #4361ee, #3a0ca3);
+  }
+
+  .service-card:nth-child(2) .service-icon {
+    background: linear-gradient(135deg, #7209b7, #560bad);
+  }
+
+  .service-card:nth-child(3) .service-icon {
+    background: linear-gradient(135deg, #4cc9f0, #4895ef);
+  }
+
+  .service-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: var(--dark);
+  }
+
+  .service-card p {
+    color: var(--gray);
+    margin-bottom: 25px;
+    line-height: 1.7;
+  }
+
+  .service-features {
+    padding: 0 30px;
+    list-style: none;
+    margin-bottom: 25px;
+    flex-grow: 1;
+  }
+
+  .service-features li {
+    margin-bottom: 12px;
+    padding-left: 28px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .service-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .service-cta {
+    padding: 0 30px 35px;
+  }
+
+  .service-cta .btn {
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    border-radius: 12px;
+  }
+
+  /* Email Contact Section */
+  #email-contact {
+    padding: 100px 0;
+    background: var(--gradient);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #email-contact::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    top: -250px;
+    right: -150px;
+    animation: rotate 30s linear infinite;
+  }
+
+  #email-contact::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    bottom: -200px;
+    left: -150px;
+    animation: rotate 40s linear infinite reverse;
+  }
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .email-contact-container {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .email-contact-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+  }
+
+  .email-contact-container p {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+    line-height: 1.7;
+  }
+
+  .email-contact-display {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 40px 50px;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .email-contact-display:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .email-contact-main {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .email-contact-main i {
+    font-size: 2.5rem;
+  }
+
+  .email-contact-info {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .email-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 25px;
+    border-radius: 10px;
+  }
+
+  .email-contact-item i {
+    font-size: 1.2rem;
+  }
+
+  .email-contact-item span {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  /* CAE Program */
+  #cae {
+    padding: 100px 0;
+    background: var(--light-gray);
+  }
+
+  .cae-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .cae-content {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .cae-content h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--dark);
+  }
+
+  .cae-content p {
+    color: var(--gray);
+    margin-bottom: 30px;
+    line-height: 1.7;
+  }
+
+  .cae-visual {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .cae-benefit {
+    background: var(--light-gray);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--primary);
+  }
+
+  .cae-benefit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background: white;
+  }
+
+  .cae-benefit i {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .cae-benefit h4 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--dark);
+  }
+
+  .cae-benefit p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--gray);
+  }
+
+  /* Contact Form */
+  #contact {
+    padding: 100px 0;
+    background: white;
+  }
+
+  .contact-container {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .contact-info {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .contact-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: var(--dark);
+  }
+
+  .contact-info p {
+    color: var(--gray);
+    margin-bottom: 30px;
+    line-height: 1.7;
+  }
+
+  .contact-details {
+    margin-top: 40px;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .contact-detail:hover {
+    background: var(--light-gray);
+  }
+
+  .contact-detail i {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gradient-light);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .contact-detail div h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--dark);
+  }
+
+  .contact-detail div p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--gray);
+  }
+
+  .contact-form-container {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--dark);
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+    background: white;
+  }
+
+  .form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--dark);
+    color: white;
+    padding: 70px 0 30px;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+    margin-bottom: 50px;
+  }
+
+  .footer-logo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .footer-logo-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-logo-img i {
+    font-size: 24px;
+    color: white;
+  }
+
+  .footer-logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: white;
+  }
+
+  .footer-about p {
+    opacity: 0.8;
+    margin-bottom: 25px;
+    line-height: 1.7;
+  }
+
+  .footer-links h4,
+  .footer-contact h4 {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+    color: white;
+  }
+
+  .footer-links h4::after,
+  .footer-contact h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--gradient);
+  }
+
+  .footer-links ul {
+    list-style: none;
+  }
+
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-links a:hover {
+    color: white;
+    padding-left: 5px;
+  }
+
+  .footer-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    opacity: 0.8;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+  }
+
+  .social-icons a {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .social-icons a:hover {
+    background: var(--gradient);
+    transform: translateY(-5px);
+  }
+
+  .copyright {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+  }
+
+  /* Animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 999;
+  }
+  
+  .mobile-nav.active {
+    display: flex;
+  }
+  
+  .mobile-nav a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .mobile-nav a:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-email {
+    background: var(--gradient);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1100px) {
+    .hero h1 {
+      font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+    }
+    
+    .email-contact-main {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .nav-wrapper {
+      display: none;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+    }
+    
+    .hero {
+      padding: 140px 0 80px;
+    }
+    
+    .hero h1 {
+      font-size: 2.8rem;
+    }
+    
+    .email-contact-display {
+      padding: 30px 20px;
+    }
+    
+    .email-contact-main {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 120px 0 60px;
+    }
+    
+    .hero h1 {
+      font-size: 2.4rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+    }
+    
+    .hero-description {
+      font-size: 1.1rem;
+    }
+    
+    .hero-email-section {
+      padding: 30px 20px;
+    }
+    
+    .email-display-main {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+    
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .email-contact-info {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .section-title h2 {
+      font-size: 2.2rem;
+    }
+    
+    .email-contact-container h2 {
+      font-size: 2.2rem;
+    }
+    
+    .contact-form-container {
+      padding: 30px 25px;
+    }
+    
+    .hero-cta {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+    
+    .email-address {
+      font-size: 1.3rem;
+    }
+    
+    .section-title h2 {
+      font-size: 1.8rem;
+    }
+    
+    .service-card {
+      border-radius: 12px;
+    }
+    
+    .service-header {
+      padding: 25px 20px 20px;
+    }
+    
+    .service-cta {
+      padding: 0 20px 25px;
+    }
+    
+    .service-features {
+      padding: 0 20px;
+    }
+    
+    .email-contact-main {
+      font-size: 1.5rem;
+    }
+    
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  /* Loading animation for form submission */
+  .loading {
+    position: relative;
+    pointer-events: none;
+  }
+
+  .loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Toast notification for copy email */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--success);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .toast.show {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+<!-- Header / Navigation - FIXED -->
+<header id="header">
+  <div class="container nav-container">
+    <a href="#home" class="logo-container">
+      <div class="logo-img">
+        <div class="logo-img-placeholder">HC</div>
+      </div>
+      <div>
+        <div class="logo-text">BrightWave HC</div>
+        <div class="logo-subtext">Web Development Agency</div>
+      </div>
+    </a>
+    
+    <div class="nav-wrapper">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#email-contact">Contact</a></li>
+        <li><a href="#cae">CAE Program</a></li>
+        <li><a href="#contact">Get Quote</a></li>
+      </ul>
+      <a href="mailto:brightwavehc@gmail.com" class="nav-email">
+        <i class="fas fa-envelope"></i>
+        brightwavehc@gmail.com
+      </a>
+    </div>
+    
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+  
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#home"><i class="fas fa-home"></i> Home</a>
+    <a href="#services"><i class="fas fa-code"></i> Services</a>
+    <a href="#email-contact"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="#cae"><i class="fas fa-user-tie"></i> CAE Program</a>
+    <a href="#contact"><i class="fas fa-quote-right"></i> Get Quote</a>
+    <a href="mailto:brightwavehc@gmail.com" class="mobile-email">
+      <i class="fas fa-envelope"></i>
+      brightwavehc@gmail.com
+    </a>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-bg-shape-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="fade-in">Build Your Digital Presence with Expert Web Development</h1>
+      <p class="hero-subtitle fade-in">We create stunning, responsive websites and custom web applications that drive business growth</p>
+      <p class="hero-description fade-in">From startups to enterprises, we deliver digital solutions that work. Partner with us to transform your online presence and achieve your business goals.</p>
+      
+      <div class="hero-cta fade-in">
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-paper-plane"></i>
+          Get Your Free Quote
+        </a>
+        <a href="#services" class="btn btn-secondary">
+          <i class="fas fa-code"></i>
+          View Our Services
+        </a>
+      </div>
+      
+      <div class="hero-email-section fade-in">
+        <h3 class="hero-email-title">Contact Us Directly</h3>
+        <p class="hero-email-subtitle">For the fastest response, email us directly. We typically respond within 2-4 hours.</p>
+        
+        <div class="email-display-main">
+          <i class="fas fa-envelope email-icon"></i>
+          <a href="mailto:brightwavehc@gmail.com" class="email-address">brightwavehc@gmail.com</a>
+          <button class="email-copy-btn" id="copyEmailBtn">
+            <i class="fas fa-copy"></i> Copy
+          </button>
+        </div>
+        
+        <div class="email-response-time">
+          <i class="fas fa-clock"></i>
+          <span>Response Time: 2-4 Hours</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services">
+  <div class="container">
+    <div class="section-title fade-in">
+      <h2>Our Web Development Services</h2>
+      <p>We offer comprehensive web development solutions tailored to your business needs</p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-header">
+          <div class="service-icon">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <h3>One-Page Websites</h3>
+          <p>Perfect for startups, portfolios, and promotions. Fully responsive design that looks great on all devices.</p>
+        </div>
+        <ul class="service-features">
+          <li>Mobile-first responsive design</li>
+          <li>SEO optimized for better visibility</li>
+          <li>Fast loading speed</li>
+          <li>Contact form integration</li>
+          <li>Social media integration</li>
+        </ul>
+        <div class="service-cta">
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+      
+      <div class="service-card fade-in">
+        <div class="service-header">
+          <div class="service-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <h3>Business Websites</h3>
+          <p>Professional multi-page websites to showcase your business and convert visitors into customers.</p>
+        </div>
+        <ul class="service-features">
+          <li>5-10 page professional website</li>
+          <li>Content management system</li>
+          <li>Blog integration</li>
+          <li>Google Analytics setup</li>
+          <li>Monthly maintenance options</li>
+        </ul>
+        <div class="service-cta">
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+      
+      <div class="service-card fade-in">
+        <div class="service-header">
+          <div class="service-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3>Custom Web Systems</h3>
+          <p>Tailored web applications and systems to automate and streamline your business operations.</p>
+        </div>
+        <ul class="service-features">
+          <li>Custom database design</li>
+          <li>User authentication systems</li>
+          <li>API integrations</li>
+          <li>Admin dashboard</li>
+          <li>Ongoing support & updates</li>
+        </ul>
+        <div class="service-cta">
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Email Contact Section -->
+<section id="email-contact">
+  <div class="container">
+    <div class="email-contact-container fade-in">
+      <h2>Get in Touch Today</h2>
+      <p>Ready to start your web development project? Email us directly for a quick response and personalized consultation.</p>
+      
+      <div class="email-contact-display">
+        <div class="email-contact-main">
+          <i class="fas fa-envelope"></i>
+          <span>brightwavehc@gmail.com</span>
+        </div>
+        
+        <div class="email-contact-info">
+          <div class="email-contact-item">
+            <i class="fas fa-clock"></i>
+            <span>2-4 Hour Response Time</span>
+          </div>
+          <div class="email-contact-item">
+            <i class="fas fa-comments"></i>
+            <span>Free 30-Minute Consultation</span>
+          </div>
+          <div class="email-contact-item">
+            <i class="fas fa-file-alt"></i>
+            <span>Detailed Proposal in 24 Hours</span>
+          </div>
+        </div>
+        
+        <a href="mailto:brightwavehc@gmail.com" class="btn btn-primary" style="background: white; color: var(--primary);">
+          <i class="fas fa-paper-plane"></i>
+          Send Email Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAE Program -->
+<section id="cae">
+  <div class="container">
+    <div class="cae-container">
+      <div class="cae-content fade-in">
+        <h2>CAE Program</h2>
+        <p>Join our Certified Associate Executive program to earn commissions by referring clients to our web development services. Perfect for marketers, students, and freelancers looking to earn extra income.</p>
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-user-plus"></i>
+          Join as CAE
+        </a>
+      </div>
+      
+      <div class="cae-visual fade-in">
+        <div class="cae-benefit">
+          <i class="fas fa-coins"></i>
+          <h4>40% Commission</h4>
+          <p>Earn 40% commission on every successful referral</p>
+        </div>
+        
+        <div class="cae-benefit">
+          <i class="fas fa-award"></i>
+          <h4>Performance Bonus</h4>
+          <p>Close 5 projects → Get 50% allowance bonus</p>
+        </div>
+        
+        <div class="cae-benefit">
+          <i class="fas fa-headset"></i>
+          <h4>Full Support</h4>
+          <p>Technical and marketing support from our team</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-container">
+      <div class="contact-info fade-in">
+        <h3>Get Your Custom Quote</h3>
+        <p>Tell us about your project and we'll provide a detailed proposal within 24 hours. We're here to help bring your vision to life with professional web development.</p>
+        
+        <div class="contact-details">
+          <div class="contact-detail">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email Us</h4>
+              <p>brightwavehc@gmail.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-detail">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h4>Call/WhatsApp</h4>
+              <p>0720 123 910</p>
+            </div>
+          </div>
+          
+          <div class="contact-detail">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h4>Business Hours</h4>
+              <p>Mon-Fri: 9AM-6PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form-container fade-in">
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email address">
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">WhatsApp Number *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Enter your WhatsApp number">
+          </div>
+          
+          <div class="form-group">
+            <label for="service">Service Interested In *</label>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              <option value="One-Page Website">One-Page Website</option>
+              <option value="Business Website">Business Website</option>
+              <option value="Custom Web System">Custom Web System</option>
+              <option value="CAE Program">CAE Program</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Project Details</label>
+            <textarea id="message" name="message" placeholder="Tell us about your project, timeline, and budget..."></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            <i class="fas fa-paper-plane"></i>
+            Get Free Quote
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo-container">
+        <a href="#home" class="footer-logo">
+          <div class="footer-logo-img">
+            <i class="fas fa-wave-square"></i>
+          </div>
+          <div class="footer-logo-text">BrightWave HC</div>
+        </a>
+        <div class="footer-about">
+          <p>Professional web development solutions that help businesses grow online. We deliver quality, responsive websites and custom web applications.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+          <li><a href="#email-contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          <li><a href="#cae"><i class="fas fa-chevron-right"></i> CAE Program</a></li>
+          <li><a href="#contact"><i class="fas fa-chevron-right"></i> Get Quote</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <p><i class="fas fa-envelope"></i> brightwavehc@gmail.com</p>
+        <p><i class="fas fa-phone"></i> 0720 123 910</p>
+        <p><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</p>
+        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM</p>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2023 BrightWave HC. All rights reserved. | Grow • Earn • Succeed</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast">
+  <i class="fas fa-check"></i>
+  <span>Email copied to clipboard!</span>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle - FIXED
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileNav.classList.toggle('active');
+      mobileMenuBtn.innerHTML = mobileNav.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking a link
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        mobileNav.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Header scroll effect
+    const header = document.getElementById('header');
+    
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Scroll animation for elements
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeInOnScroll = () => {
+      fadeElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementTop < windowHeight - 100) {
+          element.classList.add('visible');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', fadeInOnScroll);
+    window.addEventListener('load', fadeInOnScroll);
+    
+    // Email copy functionality - IMPROVED
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const toast = document.getElementById('toast');
+    
+    copyEmailBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const email = 'brightwavehc@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        // Show toast notification
+        toast.classList.add('show');
+        
+        // Change button text
+        const originalText = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        this.style.background = 'var(--success)';
+        
+        // Reset after 3 seconds
+        setTimeout(() => {
+          toast.classList.remove('show');
+          this.innerHTML = originalText;
+          this.style.background = '';
+        }, 3000);
+      });
+    });
+    
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const service = document.getElementById('service').value;
+      
+      // Validate form
+      if (!name || !email || !service) {
+        alert('Please fill in all required fields marked with *');
+        return;
+      }
+      
+      // Show loading state
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      submitBtn.classList.add('loading');
+      submitBtn.disabled = true;
+      
+      // Simulate form submission with delay
+      setTimeout(() => {
+        // Reset form
+        contactForm.reset();
+        
+        // Show success state
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent Successfully!';
+        submitBtn.style.background = 'linear-gradient(135deg, #06d6a0, #0cb48c)';
+        submitBtn.classList.remove('loading');
+        
+        // Show success message
+        const successMessage = document.createElement('div');
+        successMessage.innerHTML = `
+          <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                      background: white; padding: 30px; border-radius: 15px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); 
+                      z-index: 10000; max-width: 500px; width: 90%; text-align: center;">
+            <h3 style="color: #4361ee; margin-bottom: 15px;">Thank you, ${name}!</h3>
+            <p style="margin-bottom: 20px;">Your ${service} inquiry has been submitted successfully.</p>
+            <p style="margin-bottom: 25px;">We'll contact you at <strong>${email}</strong> within 2-4 hours.</p>
+            <p style="margin-bottom: 25px;">For faster response, email us directly at:</p>
+            <a href="mailto:brightwavehc@gmail.com" style="display: inline-block; background: #4361ee; color: white; 
+               padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 600;">
+              <i class="fas fa-envelope"></i> brightwavehc@gmail.com
+            </a>
+            <button onclick="this.parentElement.remove()" style="margin-top: 25px; padding: 10px 25px; 
+                    background: #f8f9fa; border: none; border-radius: 8px; cursor: pointer;">Close</button>
+          </div>
+          <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                      background: rgba(0,0,0,0.5); z-index: 9999;"></div>
+        `;
+        document.body.appendChild(successMessage);
+        
+        // Reset button after 5 seconds
+        setTimeout(() => {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+          submitBtn.style.background = '';
+        }, 5000);
+      }, 2000);
+    });
+    
+    // Smooth scrolling for anchor links - FIXED
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        
+        if (href === '#') return;
+        
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+          e.preventDefault();
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          if (mobileNav.classList.contains('active')) {
+            mobileNav.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+          }
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
